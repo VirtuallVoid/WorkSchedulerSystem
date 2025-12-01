@@ -1,25 +1,68 @@
+using Application;
+using Infrastructure;
+using Serilog;
+using Serilog.Formatting.Compact;
+using WebApi.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
 
-// Add services to the container.
+builder.Host.UseSerilog((context, configuration) =>
+    configuration
+        .ReadFrom.Configuration(context.Configuration)
+        .Enrich.FromLogContext()
+        .WriteTo.File(new CompactJsonFormatter(),
+            @"C:\Logs\WorkSchedulerSystem\WorkSchedulerSystem.log",
+            rollingInterval: RollingInterval.Day,
+            retainedFileCountLimit: 90,
+            encoding: System.Text.Encoding.UTF8));
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddApplicationLayer();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerExtension(builder.Environment);
+builder.Services.AddControllers();
+builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHealthChecks();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireRole("Admin"));
+
+    options.AddPolicy("WorkerOnly", policy =>
+        policy.RequireRole("Worker"));
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
-
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
 app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseRouting();
+app.UseSerilogRequestLogging();
+app.UseCors(x => x
+   .AllowAnyOrigin()
+   .AllowAnyMethod()
+   .AllowAnyHeader());
 
+app.UseAuthentication();
+app.UseAuthorization(); 
+app.UseSwaggerExtension();
+app.UseErrorHandlingMiddleware();
+app.UseHealthChecks("/health");
 app.MapControllers();
 
 app.Run();
