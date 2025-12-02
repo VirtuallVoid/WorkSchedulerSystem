@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Schedules.Responses;
+﻿using Application.DTOs.Schedules;
+using Application.DTOs.Schedules.Responses;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace Application.Interfaces.Repositories
     {
         Task<IEnumerable<JobTypesDto>> GetJobTypesAsync();
         Task<IEnumerable<ShiftTypesDto>> GetShiftTypesAsync();
-        Task<int> SubmitScheduleRequestAsync(Schedule obj);
+        Task<int> SubmitScheduleRequestAsync(ScheduleRequestDto obj);
         Task<IEnumerable<ScheduleDto>> GetUserSchedulesAsync(int userId);
         Task<IEnumerable<ScheduleDto>> GetAllSchedulesAsync();
-        Task<bool> ApproveScheduleAsync(int scheduleId);
-        Task<bool> RejectScheduleAsync(int scheduleId);
+        Task<bool> ApproveScheduleAsync(int scheduleId, int adminId);
+        Task<bool> RejectScheduleAsync(int scheduleId, int adminId);
     }
 }

@@ -9,6 +9,6 @@ namespace Application.DTOs.Schedules.Responses
     public class JobTypesDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string JobName { get; set; }
     }
 }

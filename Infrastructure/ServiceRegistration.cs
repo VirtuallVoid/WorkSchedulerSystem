@@ -24,6 +24,7 @@ namespace Infrastructure
             services.AddTransient<IAuthService, AuthService>();
 
             services.AddOptions();
+            services.AddScoped<IUserContext, UserContext>();
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
             services.AddSingleton<IDatabaseConfig>(_ =>
                 new DatabaseConfig(

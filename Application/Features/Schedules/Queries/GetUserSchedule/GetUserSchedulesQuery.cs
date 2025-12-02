@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Schedules.Queries.Jobs
+namespace Application.Features.Schedules.Queries.GetUserSchedule
 {
-    public record GetAllJobsQuery : IRequest<Response<List<JobTypesDto>>>;
+    public class GetUserSchedulesQuery : IRequest<Response<List<ScheduleDto>>>
+    {
+    }
 }

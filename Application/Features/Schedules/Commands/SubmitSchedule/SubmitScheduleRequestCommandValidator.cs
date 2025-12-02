@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Schedules.Queries.SubmitSchedule
+namespace Application.Features.Schedules.Commands.SubmitSchedule
 {
     public class SubmitScheduleRequestCommandValidator : AbstractValidator<SubmitScheduleRequestCommand>
     {

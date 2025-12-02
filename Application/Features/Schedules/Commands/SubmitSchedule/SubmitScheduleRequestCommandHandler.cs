@@ -1,8 +1,10 @@
 ﻿using Application.DTOs.Logs;
+using Application.DTOs.Schedules;
 using Application.Exceptions;
 using Application.Helpers;
 using Application.Interfaces;
 using Application.Wrappers;
+using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -12,17 +14,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Schedules.Queries.SubmitSchedule
+namespace Application.Features.Schedules.Commands.SubmitSchedule
 {
     public class SubmitScheduleRequestCommandHandler : IRequestHandler<SubmitScheduleRequestCommand, Response<string>>
     {
         private readonly IUnitOfWork _uow;
         private readonly IUserContext _userContext;
+        private readonly IMapper _mapper;
 
-        public SubmitScheduleRequestCommandHandler(IUnitOfWork uow, IUserContext userContext)
+        public SubmitScheduleRequestCommandHandler(IUnitOfWork uow, IUserContext userContext, IMapper mapper)
         {
             _uow = uow;
             _userContext = userContext;
+            _mapper = mapper;
         }
 
         public async Task<Response<string>> Handle(SubmitScheduleRequestCommand request, CancellationToken cancellationToken)
@@ -30,18 +34,14 @@ namespace Application.Features.Schedules.Queries.SubmitSchedule
             try
             {
                 var userId = _userContext.UserId != 0 ? _userContext.UserId :  throw new AuthException("User not authenticated", "UNAUTHORIZED");
-
-                var schedule = new Schedule
+                var schedule = new ScheduleRequestDto
                 {
                     UserId = userId,
                     JobId = request.JobId,
                     ShiftTypeId = request.ShiftTypeId,
-                    StatusId = 1, // Pending
                     StartDate = request.StartDate,
-                    EndDate = request.EndDate,
-                    RequestDate = DateTime.Now
+                    EndDate = request.EndDate
                 };
-
                 var result = await _uow.SchedulesRepository.SubmitScheduleRequestAsync(schedule);
 
                 if (result == 0)

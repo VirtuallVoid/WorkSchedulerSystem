@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Schedules.Queries.Jobs
+namespace Application.Features.Schedules.Queries.Jobs.Queries
 {
     public class GetAllJobsQueryHandler : IRequestHandler<GetAllJobsQuery, Response<List<JobTypesDto>>>
     {
@@ -35,9 +35,7 @@ namespace Application.Features.Schedules.Queries.Jobs
                 if (jobs == null || !jobs.Any())
                     return Response<List<JobTypesDto>>.Fail( 404, "No Jobs Found" );
 
-                var returnable = _mapper.Map<IEnumerable<JobTypesDto>>(jobs);
-
-                return Response<List<JobTypesDto>>.Success(returnable.ToList(), 200, "Jobs retrieved successfully");
+                return Response<List<JobTypesDto>>.Success(jobs.ToList(), 200, "Jobs retrieved successfully");
             }
             catch (AppException) { throw; }
             catch (Exception ex)

@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Schedules.Queries.Shifts
+namespace Application.Features.Schedules.Queries.Shifts.Queries
 {
     public class GetAllShiftsQueryHandler : IRequestHandler<GetAllShiftsQuery, Response<List<ShiftTypesDto>>>
     {
@@ -34,9 +34,7 @@ namespace Application.Features.Schedules.Queries.Shifts
                 if (shifts == null || !shifts.Any())
                     return Response<List<ShiftTypesDto>>.Fail(404, "No Shifts Found");
 
-                var mapped = _mapper.Map<IEnumerable<ShiftTypesDto>>(shifts);
-
-                return Response<List<ShiftTypesDto>>.Success(mapped.ToList(), 200, "Shifts retrieved successfully");
+                return Response<List<ShiftTypesDto>>.Success(shifts.ToList(), 200, "Shifts retrieved successfully");
             }
             catch (AppException) { throw; }
             catch (Exception ex)

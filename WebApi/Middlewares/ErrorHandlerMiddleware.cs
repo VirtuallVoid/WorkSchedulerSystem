@@ -37,7 +37,7 @@ namespace WebApi.Middlewares
 
                 switch (error)
                 {
-                    case AuthException e when e.ErrorCode == "ACCOUNT_LOCKED":
+                    case AuthException e when e.ErrorCode == "FORBIDDEN":
                         statusCode = HttpStatusCode.Forbidden; // 403
                         message = e.Message;
                         errorCode = e.ErrorCode;

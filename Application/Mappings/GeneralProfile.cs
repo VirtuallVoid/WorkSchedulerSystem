@@ -1,5 +1,7 @@
-﻿using Application.DTOs.Schedules.Responses;
+﻿using Application.DTOs.Schedules;
+using Application.DTOs.Schedules.Responses;
 using Application.Features.Auth.Commands.RegisterUser;
+using Application.Features.Schedules.Commands.SubmitSchedule;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -16,8 +18,7 @@ namespace Application.Mappings
         public GeneralProfile()
         {
             CreateMap<RegisterUserCommand, User>().ReverseMap();
-            CreateMap<IEnumerable<JobTypesDto>, IEnumerable<Job>>().ReverseMap();
-            CreateMap<IEnumerable<ShiftTypesDto>, IEnumerable<ShiftType>>().ReverseMap();
+            CreateMap<SubmitScheduleRequestCommand, ScheduleRequestDto>().ReverseMap();
         }
     }
 }

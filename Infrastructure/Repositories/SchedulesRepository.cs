@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Schedules.Responses;
+﻿using Application.DTOs.Schedules;
+using Application.DTOs.Schedules.Responses;
 using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Dapper;
@@ -27,9 +28,9 @@ namespace Infrastructure.Repositories
             return await conn.QueryAsync<ShiftTypesDto>(sql);
         }
 
-        public async Task<int> SubmitScheduleRequestAsync(Schedule obj)
+        public async Task<int> SubmitScheduleRequestAsync(ScheduleRequestDto obj)
         {
-            const string sql = "EXEC [dbo].[spSubmitScheduleRequest] @UserId, @JobId, @Date, @ShiftId";
+            const string sql = "EXEC [dbo].[spSubmitScheduleRequest] @UserId, @JobId, @ShiftTypeId, @StartDate, @EndDate";
             await using var conn = new SqlConnection(dbConfig.ConnectionString);
             return await conn.ExecuteScalarAsync<int>(sql, obj);
         }
@@ -48,19 +49,19 @@ namespace Infrastructure.Repositories
             return await conn.QueryAsync<ScheduleDto>(sql);
         }
 
-        public async Task<bool> ApproveScheduleAsync(int scheduleId)
+        public async Task<bool> ApproveScheduleAsync(int scheduleId, int adminId)
         {
-            const string sql = "EXEC [dbo].[spApproveSchedule] @ScheduleId";
+            const string sql = "EXEC [dbo].[spApproveSchedule] @ScheduleId, @AdminId";
             await using var conn = new SqlConnection(dbConfig.ConnectionString);
-            await conn.ExecuteAsync(sql, new { ScheduleId = scheduleId });
+            await conn.ExecuteAsync(sql, new { ScheduleId = scheduleId, AdminId = adminId });
             return true;
         }
 
-        public async Task<bool> RejectScheduleAsync(int scheduleId)
+        public async Task<bool> RejectScheduleAsync(int scheduleId, int adminId)
         {
-            const string sql = "EXEC [dbo].[spRejectSchedule] @ScheduleId";
+            const string sql = "EXEC [dbo].[spRejectSchedule] @ScheduleId, @AdminId";
             await using var conn = new SqlConnection(dbConfig.ConnectionString);
-            await conn.ExecuteAsync(sql, new { ScheduleId = scheduleId });
+            await conn.ExecuteAsync(sql, new { ScheduleId = scheduleId, AdminId = adminId });
             return true;
         }
     }
