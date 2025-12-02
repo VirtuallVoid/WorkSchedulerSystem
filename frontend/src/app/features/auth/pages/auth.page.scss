@@ -1,0 +1,31 @@
+.auth-wrapper {
+  width: 400px;
+  margin: 40px auto;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+button {
+  margin-top: 10px;
+  height: 45px;
+  border-radius: 24px;
+}
+
+.error-box {
+  margin-top: 15px;
+  padding: 12px 16px;
+  background: #ffe7e7;
+  color: #b40000;
+  border-radius: 8px;
+  border: 1px solid #ffb3b3;
+  font-size: 14px;
+  line-height: 1.5;
+}

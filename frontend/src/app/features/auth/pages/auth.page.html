@@ -1,0 +1,75 @@
+<div class="auth-wrapper">
+
+  <mat-tab-group [(selectedIndex)]="selectedTab">
+    <mat-tab label="Login">
+      <div class="tab-content">
+
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form-box">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="userName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit"
+                  [disabled]="loading">
+            {{ loading ? 'Logging in...' : 'Login' }}
+          </button>
+
+        </form>
+
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Register">
+      <div class="tab-content">
+
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="form-box">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="fullName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="userName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="roleId">
+              <mat-option [value]="1">Admin</mat-option>
+              <mat-option [value]="2">Worker</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit"
+                  [disabled]="loading">
+            {{ loading ? 'Registering...' : 'Register' }}
+          </button>
+
+        </form>
+
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+
+
+  <!-- SINGLE SHARED ERROR BOX -->
+  <div *ngIf="errorMessages.length" class="error-box">
+    <div *ngFor="let msg of errorMessages">• {{ msg }}</div>
+  </div>
+
+</div>

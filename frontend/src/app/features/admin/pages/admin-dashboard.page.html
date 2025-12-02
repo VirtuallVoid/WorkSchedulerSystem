@@ -1,0 +1,45 @@
+<div class="week-header">
+  <button (click)="prevWeek()">&laquo;</button>
+
+  <h2>
+    {{ weekStart | date:'d MMM' }} - {{ weekEnd | date:'d MMM yyyy' }}
+    [Week {{ weekNumber }}]
+  </h2>
+
+  <button (click)="nextWeek()">&raquo;</button>
+</div>
+
+<div class="calendar">
+
+  <div class="grid header">
+    <div class="job-col"></div>
+    <div *ngFor="let d of days" class="day-col">
+      <div class="day-name">{{ d | date:'EEE' }}</div>
+      <div class="day-date">{{ d | date:'d MMM yyyy' }}</div>
+    </div>
+  </div>
+
+  <div class="grid row" *ngFor="let job of jobs">
+    <div class="job-col">{{ job }}</div>
+
+    <div *ngFor="let day of days" class="cell">
+      <ng-container *ngFor="let s of getSchedules(job, day)">
+
+        <div class="shift"
+             [ngClass]="s.statusName.toLowerCase()">
+
+          <strong>{{ s.shiftTypeName }}</strong><br/>
+          {{ s.userFullName }}
+
+          <div *ngIf="s.statusName === 'Pending'" class="actions">
+            <button class="ok" (click)="approve(s.id)">✓</button>
+            <button class="no" (click)="reject(s.id)">✕</button>
+          </div>
+
+        </div>
+
+      </ng-container>
+    </div>
+
+  </div>
+</div>
