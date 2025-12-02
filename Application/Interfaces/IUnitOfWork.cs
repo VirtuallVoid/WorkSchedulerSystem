@@ -11,5 +11,6 @@ namespace Application.Interfaces
     {
         ILoggingRepository LoggingRepository { get; }
         IAuthRepository AuthRepository { get; }
+        ISchedulesRepository SchedulesRepository { get; }
     }
 }

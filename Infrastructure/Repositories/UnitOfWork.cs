@@ -13,5 +13,6 @@ namespace Infrastructure.Repositories
     {
         public ILoggingRepository LoggingRepository => serviceProvider.GetService<ILoggingRepository>()!;
         public IAuthRepository AuthRepository => serviceProvider.GetService<IAuthRepository>()!;
+        public ISchedulesRepository SchedulesRepository => serviceProvider.GetService<ISchedulesRepository>()!;
     }
 }

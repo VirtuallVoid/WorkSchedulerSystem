@@ -28,14 +28,7 @@ builder.Services.AddControllers();
 builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHealthChecks();
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminOnly", policy =>
-        policy.RequireRole("Admin"));
-
-    options.AddPolicy("WorkerOnly", policy =>
-        policy.RequireRole("Worker"));
-});
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

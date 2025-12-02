@@ -1,8 +1,9 @@
 ﻿using Application.Exceptions;
-using Application.Interfaces.Factories;
+using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Dapper;
 using Domain.Entities;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class AuthRepository(IConnectionFactory connectionFactory) : IAuthRepository
+    public class AuthRepository(IDatabaseConfig dbConfig) : IAuthRepository
     {
         public async Task<User> ValidateUserByUserName(string username)
         {
             const string query = "EXEC [dbo].[spValidateUserByUserName] @UserName";
 
-            using var conn = connectionFactory.CreateConnection();
+            await using var conn = new SqlConnection(dbConfig.ConnectionString);
             var user = await conn.QueryFirstOrDefaultAsync<User>(query, new { UserName = username });
             return user;
         }
@@ -27,7 +28,7 @@ namespace Infrastructure.Repositories
         {
             const string query = "EXEC [dbo].[spCheckIfUserExists] @UserName";
 
-            using var conn = connectionFactory.CreateConnection();
+            await using var conn = new SqlConnection(dbConfig.ConnectionString);
             var user = await conn.QueryFirstOrDefaultAsync<bool>(query, new { UserName = username });
             return user;
         }
@@ -35,7 +36,7 @@ namespace Infrastructure.Repositories
         public async Task<int> CreateUserAsync(User user)
         {
             const string sql = "[dbo].[spCreateUser]";
-            using var conn = connectionFactory.CreateConnection();
+            await using var conn = new SqlConnection(dbConfig.ConnectionString);
             var newUserId = await conn.QueryFirstOrDefaultAsync<int>(sql,
                 new
                 {
