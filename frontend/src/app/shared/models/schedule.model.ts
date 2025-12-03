@@ -8,8 +8,7 @@ export interface Schedule {
   shiftTypeName: string;
   statusId: number;
   statusName: string;
-  startDate: string;
-  endDate: string;
+  shiftDate: string;
   requestDate: string;
   approvedBy: number;
   approvedByFullName: string;

@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.DTOs.Auth.Responses;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Application.Interfaces.Repositories
         Task<User> ValidateUserByUserName(string username);
         Task<bool> CheckIfUserExists(string username);
         Task<int> CreateUserAsync(User user);
+        Task<UserDto> GetUserInfoByUserId(int userId);
     }
 }

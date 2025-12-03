@@ -31,6 +31,19 @@ namespace Application.Features.Auth.Commands.RegisterUser
             RuleFor(x => x.RoleId)
                 .Must(id => id == 1 || id == 2)
                 .WithMessage("RoleId must be either 1 (Admin) or 2 (Worker).");
+
+            When(x => x.RoleId == 2, () =>
+            {
+                RuleFor(x => x.JobId)
+                    .NotNull().WithMessage("Job is required for workers");
+            });
+
+            When(x => x.RoleId == 1, () =>
+            {
+                RuleFor(x => x.JobId)
+                    .Must(x => x == null)
+                    .WithMessage("Admin cannot have a job assigned");
+            });
         }
     }
 }

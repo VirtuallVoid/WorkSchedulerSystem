@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Schedules.Queries.Shifts.Queries
+namespace Application.Features.Schedules.Queries.Shifts
 {
     public class GetAllShiftsQueryHandler : IRequestHandler<GetAllShiftsQuery, Response<List<ShiftTypesDto>>>
     {

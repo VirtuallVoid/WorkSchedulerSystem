@@ -13,8 +13,7 @@ namespace Domain.Entities
         public int JobId { get; set; }
         public int? StatusId { get; set; }
         public int ShiftTypeId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime ShiftDate { get; set; }
         public DateTime? RequestDate { get; set; }
         public int? ApprovedBy { get; set; }
         public DateTime? ApprovedDate { get; set; }

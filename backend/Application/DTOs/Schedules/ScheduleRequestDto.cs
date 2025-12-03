@@ -11,8 +11,7 @@ namespace Application.DTOs.Schedules
         public int UserId { get; set; }
         public int JobId { get; set; }
         public int ShiftTypeId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime ShiftDate { get; set; }
     }
 
 }

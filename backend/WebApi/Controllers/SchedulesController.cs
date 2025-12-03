@@ -4,8 +4,8 @@ using Application.Features.Schedules.Commands.RejectSchedule;
 using Application.Features.Schedules.Commands.SubmitSchedule;
 using Application.Features.Schedules.Queries.GetAllSchedules;
 using Application.Features.Schedules.Queries.GetUserSchedule;
-using Application.Features.Schedules.Queries.Jobs.Queries;
-using Application.Features.Schedules.Queries.Shifts.Queries;
+using Application.Features.Schedules.Queries.Jobs;
+using Application.Features.Schedules.Queries.Shifts;
 using Application.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +15,6 @@ namespace WebApi.Controllers
 {
     public class SchedulesController : BaseApiController
     {
-        [Authorize]
         [HttpGet("jobs")]
         [SwaggerResponse(200, "Success", typeof(Response<List<JobTypesDto>>))]
         [SwaggerOperation(Summary = "Get Jobs Catalog", Description = "Returns a list of all available jobs for dropdown selection.")]

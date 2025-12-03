@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
 
         public async Task<int> SubmitScheduleRequestAsync(ScheduleRequestDto obj)
         {
-            const string sql = "EXEC [dbo].[spSubmitScheduleRequest] @UserId, @JobId, @ShiftTypeId, @StartDate, @EndDate";
+            const string sql = "EXEC [dbo].[spSubmitScheduleRequest] @UserId, @JobId, @ShiftTypeId, @ShiftDate";
             await using var conn = new SqlConnection(dbConfig.ConnectionString);
             return await conn.ExecuteScalarAsync<int>(sql, obj);
         }

@@ -10,10 +10,8 @@ namespace Application.Features.Schedules.Commands.SubmitSchedule
 {
     public class SubmitScheduleRequestCommand : IRequest<Response<string>>
     {
-        public int JobId { get; set; }
         public int ShiftTypeId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime ShiftDate { get; set; }
     }
 
 }

@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Schedules.Queries.Jobs.Queries
+namespace Application.Features.Schedules.Queries.Jobs
 {
     public class GetAllJobsQueryHandler : IRequestHandler<GetAllJobsQuery, Response<List<JobTypesDto>>>
     {

@@ -34,13 +34,13 @@ namespace Application.Features.Schedules.Commands.SubmitSchedule
             try
             {
                 var userId = _userContext.UserId != 0 ? _userContext.UserId :  throw new AuthException("User not authenticated", "UNAUTHORIZED");
+                var userInfo = await _uow.AuthRepository.GetUserInfoByUserId(userId);
                 var schedule = new ScheduleRequestDto
                 {
                     UserId = userId,
-                    JobId = request.JobId,
+                    JobId = userInfo.JobId,
                     ShiftTypeId = request.ShiftTypeId,
-                    StartDate = request.StartDate,
-                    EndDate = request.EndDate
+                    ShiftDate = request.ShiftDate
                 };
                 var result = await _uow.SchedulesRepository.SubmitScheduleRequestAsync(schedule);
 
@@ -55,7 +55,7 @@ namespace Application.Features.Schedules.Commands.SubmitSchedule
                 await ExceptionHelper.HandleExceptionAsync(
                     new LogRequestDto("SubmitScheduleRequest", "Failed to submit schedule request")
                     {
-                        Details = $"JobId: {request.JobId}, Shift: {request.ShiftTypeId}"
+                        Details = $"UserId: {_userContext.UserId}, Shift: {request.ShiftTypeId}"
                     },
                     ex,
                     _uow.LoggingRepository

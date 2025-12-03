@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
+import {WorkerPage} from './pages/worker-dashboard.page';
 
 export const WORKER_ROUTES: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./pages/worker-dashboard.page').then(m => m.WorkerPage)
+    component: WorkerPage,
   }
 ];

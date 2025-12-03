@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Schedules.Queries.Jobs.Queries
+namespace Application.Features.Schedules.Queries.Jobs
 {
     public record GetAllJobsQuery : IRequest<Response<List<JobTypesDto>>>;
 }

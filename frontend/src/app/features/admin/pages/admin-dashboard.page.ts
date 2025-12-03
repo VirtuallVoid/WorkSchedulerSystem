@@ -3,6 +3,7 @@ import { firstValueFrom } from 'rxjs';
 import { AdminService } from '../../../core/services/admin.service';
 import { Schedule } from '../../../shared/models/schedule.model';
 import { DatePipe, NgClass, CommonModule } from '@angular/common';
+import {LogoutButtonComponent} from '../../../shared/logout-button/logout-button.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,14 +11,15 @@ import { DatePipe, NgClass, CommonModule } from '@angular/common';
   imports: [
     DatePipe,
     NgClass,
-    CommonModule
+    CommonModule,
+    LogoutButtonComponent
   ],
   styleUrls: ['./admin-dashboard.page.scss']
 })
 export class AdminPage implements OnInit {
 
-  schedules: Schedule[] = [];          // Raw data
-  filtered: Schedule[] = [];           // Only current week
+  schedules: Schedule[] = [];
+  filtered: Schedule[] = [];
   jobs: string[] = [];
   days: Date[] = [];
 
@@ -25,37 +27,33 @@ export class AdminPage implements OnInit {
   weekEnd!: Date;
   weekNumber!: number;
 
-  constructor(private adminService: AdminService,
-              private cdr: ChangeDetectorRef) {}
-
+  constructor(private adminService: AdminService, private cdr: ChangeDetectorRef) {}
 
   async ngOnInit() {
     this.initializeCurrentWeek();
-    await this.loadSchedules();   // no need for setTimeout
+    await this.loadSchedules();
   }
 
   async loadSchedules() {
     const res = await firstValueFrom(this.adminService.getAllSchedules());
-
     this.schedules = res || [];
 
-    this.applyFilter();   // 🔥 filter by current week
-
     this.jobs = [...new Set(
-      this.filtered.map(x => x.jobName ?? 'Unknown Job')
+      this.schedules.map(x => x.jobName ?? 'Unknown Job')
     )];
+    this.applyFilter();
     this.cdr.detectChanges();
   }
 
   applyFilter() {
     this.filtered = this.schedules.filter(s => {
-      const start = new Date(s.startDate);
-      const end = new Date(s.endDate);
-
-      return (
-        end >= this.weekStart &&
-        start <= this.weekEnd
-      );
+      const shift = new Date(s.shiftDate);
+      shift.setHours(0, 0, 0, 0);
+      const start = new Date(this.weekStart);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(this.weekEnd);
+      end.setHours(0, 0, 0, 0);
+      return shift >= start && shift <= end;
     });
   }
 
@@ -94,7 +92,7 @@ export class AdminPage implements OnInit {
     const d = new Date(this.weekStart);
     d.setDate(d.getDate() - 7);
     this.setWeek(d);
-    this.applyFilter();   // no need to reload from server
+    this.applyFilter();
   }
 
   async nextWeek() {
@@ -107,18 +105,15 @@ export class AdminPage implements OnInit {
   getSchedules(job: string, day: Date) {
     return this.filtered.filter(s =>
       (s.jobName ?? 'Unknown Job') === job &&
-      this.isSameDate(new Date(s.startDate), day)
+      this.isSameDate(new Date(s.shiftDate), day)
     );
   }
 
   isSameDate(d1: Date, d2: Date): boolean {
-    return (
-      d1.getFullYear() === d2.getFullYear() &&
-      d1.getMonth() === d2.getMonth() &&
-      d1.getDate() === d2.getDate()
-    );
+    const a = new Date(d1); a.setHours(0,0,0,0);
+    const b = new Date(d2); b.setHours(0,0,0,0);
+    return a.getTime() === b.getTime();
   }
-
 
   async approve(id: number) {
     await firstValueFrom(this.adminService.approve(id));

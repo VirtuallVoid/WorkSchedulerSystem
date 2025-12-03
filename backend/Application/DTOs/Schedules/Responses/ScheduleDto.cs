@@ -17,8 +17,7 @@ namespace Application.DTOs.Schedules.Responses
         public string ShiftTypeName { get; set; }
         public int StatusId { get; set; }
         public string StatusName { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime ShiftDate { get; set; }
         public DateTime RequestDate { get; set; }
         public int? ApprovedBy { get; set; }
         public string? ApprovedByFullName { get; set; }

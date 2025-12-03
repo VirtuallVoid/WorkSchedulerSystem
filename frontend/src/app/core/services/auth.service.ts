@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-
+import { Router } from '@angular/router';
+import {ApiResponse} from '../../shared/models/api-response.model';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
   private api = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
   async login(userName: string, password: string) {
     try {
@@ -19,6 +20,7 @@ export class AuthService {
         localStorage.setItem('token', response.data.bearerToken);
         localStorage.setItem('role', response.data.role);
         localStorage.setItem('userName', response.data.userName);
+        localStorage.setItem('expiry', response.data.tokenExpirationDate);
         localStorage.setItem('userId', response.data.userId.toString());
         return;
       }
@@ -68,7 +70,17 @@ export class AuthService {
     }
   }
 
+  getJobs() {
+    return this.http.get<ApiResponse<any[]>>(`${this.api}/schedules/jobs`);
+  }
+
   getRole() {
     return localStorage.getItem('role');
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth']);
+  }
+
 }

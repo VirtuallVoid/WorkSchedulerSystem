@@ -1,4 +1,5 @@
-﻿using Application.Exceptions;
+﻿using Application.DTOs.Auth.Responses;
+using Application.Exceptions;
 using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Dapper;
@@ -43,11 +44,21 @@ namespace Infrastructure.Repositories
                     user.FullName,
                     user.Username,
                     user.PasswordHash,
-                    user.RoleId
+                    user.RoleId,
+                    user.JobId
                 }
             );
 
             return newUserId;
+        }
+
+        public async Task<UserDto> GetUserInfoByUserId(int userId)
+        {
+            const string query = "EXEC [dbo].[spGetUserInfoByUserId] @UserId";
+
+            await using var conn = new SqlConnection(dbConfig.ConnectionString);
+            var user = await conn.QueryFirstOrDefaultAsync<UserDto>(query, new { UserId = userId });
+            return user;
         }
     }
 }

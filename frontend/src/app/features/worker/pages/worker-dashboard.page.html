@@ -1,0 +1,91 @@
+<div class="page">
+  <app-logout-button></app-logout-button>
+
+  <div class="modal-backdrop" *ngIf="showModal" (click)="closeModal()"></div>
+
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+      <h2>Submit Schedule Request</h2>
+
+      <div class="form-grid">
+        <div class="form-control">
+          <label>Shift Type</label>
+          <select [(ngModel)]="selectedShiftId">
+            <option value="">Select shift</option>
+            <option *ngFor="let s of shifts" [value]="s.id">{{ s.shiftType }}</option>
+          </select>
+        </div>
+
+        <div class="form-control">
+          <label>Shift Date</label>
+          <input type="date" [(ngModel)]="shiftDate" />
+        </div>
+
+      </div>
+
+      <button class="btn-submit" (click)="submitRequest()">Submit</button>
+      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+
+      <div class="message" *ngIf="message">{{ message }}</div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>My Approved Schedule</h2>
+
+    <div class="week-header">
+      <button (click)="prevWeek()">&laquo;</button>
+      <div>{{ weekStart | date:'d MMM' }} – {{ weekEnd | date:'d MMM yyyy' }} (Week {{ weekNumber }})</div>
+      <button (click)="nextWeek()">&raquo;</button>
+    </div>
+
+    <div class="calendar">
+      <div class="cal-header">
+        <div *ngFor="let d of days">
+          <div class="day-name">{{ d | date:'EEE' }}</div>
+          <div class="day-date">{{ d | date:'d MMM' }}</div>
+        </div>
+      </div>
+
+      <div class="cal-row">
+        <div *ngFor="let d of days" class="cal-cell">
+
+          <div *ngFor="let s of getApprovedSchedulesByDay(d)" class="approved-box">
+            <div class="approved-title">{{ s.jobName }}</div>
+            <div class="approved-type">{{ s.shiftTypeName }}</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="collapsible" (click)="toggleRequests()">
+      My Schedule Requests
+      <button class="add-btn" (click)="openModal(); $event.stopPropagation()">+ Add</button>
+      <span>{{ showRequests ? '▾' : '▸' }}</span>
+    </h2>
+
+    <div *ngIf="showRequests">
+      <div *ngIf="pendingRequests.length === 0" class="empty">
+        No pending requests
+      </div>
+
+      <div class="pending-item" *ngFor="let s of pendingRequests">
+        <div class="pending-card">
+          <strong>{{ s.jobName }} - {{ s.shiftTypeName }} </strong>
+          {{ s.shiftDate | date:'d MMM yyyy' }}
+
+          <span class="pending-badge">Pending</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
