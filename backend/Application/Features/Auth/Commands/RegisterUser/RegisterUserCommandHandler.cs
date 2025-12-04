@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Logs;
+﻿using Application.DTOs.Logging.Requests;
 using Application.Exceptions;
 using Application.Helpers;
 using Application.Interfaces;

@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Logs;
+﻿using Application.DTOs.Logging.Requests;
 using Application.Interfaces.Repositories;
 using Serilog;
 using System;

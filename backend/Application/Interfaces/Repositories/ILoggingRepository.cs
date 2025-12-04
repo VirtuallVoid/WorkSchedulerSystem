@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Logs;
+﻿using Application.DTOs.Logging.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;

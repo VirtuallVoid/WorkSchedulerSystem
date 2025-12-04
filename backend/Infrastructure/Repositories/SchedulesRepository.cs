@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Schedules;
+﻿using Application.DTOs.Schedules.Requests;
 using Application.DTOs.Schedules.Responses;
 using Application.Interfaces;
 using Application.Interfaces.Repositories;
