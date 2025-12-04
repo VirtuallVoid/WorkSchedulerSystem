@@ -113,7 +113,7 @@ calling the API directly.
     │   ├── ServiceRegistration.cs
     │   └── UserContext.cs
     │
-    │── WebApi/
+    └── WebApi/
         ├── Connected Services/
         ├── Dependencies/
         ├── Properties/
