@@ -70,7 +70,7 @@ calling the API directly.
     │   │   ├── Auth/
     │   │   │   └── Commands/
     │   │   │
-    │   │   ├── Schedules/
+    │   │   └── Schedules/
     │   │       ├── Commands/
     │   │       └── Queries/
     │   │
@@ -94,23 +94,21 @@ calling the API directly.
     │── Infrastructure/
     │   ├── Repositories/
     │   ├── Services/
-    │   │   └── AuthService.cs
-    │   │
     │   ├── DatabaseConfig.cs
     │   ├── ServiceRegistration.cs
     │   └── UserContext.cs
     │
     │── WebApi/
-    │   ├── Connected Services/
-    │   ├── Dependencies/
-    │   ├── Properties/
-    │   ├── Controllers/
-    │   ├── Extensions/
-    │   ├── Middlewares/
-    │   ├── appsettings.json
-    │   │    └── appsettings.Development.json
-    │   │
-    │   └── Program.cs
+        ├── Connected Services/
+        ├── Dependencies/
+        ├── Properties/
+        ├── Controllers/
+        ├── Extensions/
+        ├── Middlewares/
+        ├── appsettings.json
+        │    └── appsettings.Development.json
+        │
+        └── Program.cs
 
 ------------------------------------------------------------------------
 
