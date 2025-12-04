@@ -9,8 +9,7 @@ both on API and frontend routing.
 
 ------------------------------------------------------------------------
 
-DATABASE FOLDER
----------------
+# Database
 
 The `database/` directory is a lightweight replica of the database used by the API.
 It contains the SQL artifacts required by the application:
@@ -25,7 +24,7 @@ to an external SQL server or production environment.
 
 ------------------------------------------------------------------------
 
-# Backend (ASP.NET Core 8) --- API Service
+# Backend (ASP.NET Core 8) - API Service
 
 A clean backend demonstrating real-world architecture patterns used in
 enterprise systems.
@@ -48,7 +47,7 @@ enterprise systems.
 
 ------------------------------------------------------------------------
 
-## RBAC --- Role-Based Access Control (Backend & API)
+## RBAC - Role-Based Access Control (Backend & API)
 
 The system implements RBAC:
 
@@ -180,18 +179,19 @@ Swagger provides: - Interactive documentation\
 
 ------------------------------------------------------------------------
 
-# Frontend (Angular 18)
+# Frontend (Angular 21)
 
-frontend built with Angular 18 and powered by Node.js 20.
+frontend built with Angular 21 and powered by Node.js 24.11.1.
 
 ## Frontend Features
 
--   Angular 18\
--   Node.js 20 runtime\
+-   Angular 21\
+-   Node.js 24.11.1 runtime\
+-   Npm 11.6.2\
 -   Standalone routing\
 -   Reactive forms\
 -   Shared UI components\
--   Auth & Role Guards\
+-   Auth & Role Guards + Interceptor\
 -   JWT stored in localStorage\
 -   Auto-attached Authorization header\
 -   Feature modules: Admin, Worker, Auth\
@@ -225,18 +225,5 @@ frontend built with Angular 18 and powered by Node.js 20.
     │   ├── environments/
     │   ├── main.ts
     │   ├── styles.scss
-
-------------------------------------------------------------------------
-
-## Frontend Tech Stack
-
--   Angular 18\
--   Node.js 20\
--   TypeScript\
--   SCSS\
--   Angular Router\
--   JWT Auth\
--   Guards + Interceptors\
--   Feature Modules (Admin/Worker/Auth)
 
 ------------------------------------------------------------------------
