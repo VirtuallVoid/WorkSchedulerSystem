@@ -59,58 +59,58 @@ calling the API directly.
 
 ## Backend Project Structure
 
-WorkSchedulerSystem/
-│
-│── Application/
-│   ├── Behaviours/
-│   ├── DTOs/
-│   ├── Enums/
-│   ├── Exceptions/
-│   ├── Features/
-│   │   ├── Auth/
-│   │   │   └── Commands/
-│   │   │
-│   │   ├── Schedules/
-│   │       ├── Commands/
-│   │       └── Queries/
-│   │
-│   ├── Helpers/
-│   ├── Interfaces/
-│   │   ├── Repositories/
-│   │   ├── Services/
-│   │   ├── IDatabaseConfig.cs
-│   │   ├── IUnitOfWork.cs
-│   │   └── IUserContext.cs
-│   │
-│   ├── Mappings/
-│   ├── Wrappers/
-│   └── ServiceExtensions.cs
-│
-│── Domain/
-│   ├── Common/
-│   ├── Entities/
-│   └── Settings/
-│
-│── Infrastructure/
-│   ├── Repositories/
-│   ├── Services/
-│   │   └── AuthService.cs
-│   │
-│   ├── DatabaseConfig.cs
-│   ├── ServiceRegistration.cs
-│   └── UserContext.cs
-│
-│── WebApi/
-│   ├── Connected Services/
-│   ├── Dependencies/
-│   ├── Properties/
-│   ├── Controllers/
-│   ├── Extensions/
-│   ├── Middlewares/
-│   ├── appsettings.json
-│   │    └── appsettings.Development.json
-│   │
-│   └── Program.cs
+    WorkSchedulerSystem/
+    │
+    │── Application/
+    │   ├── Behaviours/
+    │   ├── DTOs/
+    │   ├── Enums/
+    │   ├── Exceptions/
+    │   ├── Features/
+    │   │   ├── Auth/
+    │   │   │   └── Commands/
+    │   │   │
+    │   │   ├── Schedules/
+    │   │       ├── Commands/
+    │   │       └── Queries/
+    │   │
+    │   ├── Helpers/
+    │   ├── Interfaces/
+    │   │   ├── Repositories/
+    │   │   ├── Services/
+    │   │   ├── IDatabaseConfig.cs
+    │   │   ├── IUnitOfWork.cs
+    │   │   └── IUserContext.cs
+    │   │
+    │   ├── Mappings/
+    │   ├── Wrappers/
+    │   └── ServiceExtensions.cs
+    │
+    │── Domain/
+    │   ├── Common/
+    │   ├── Entities/
+    │   └── Settings/
+    │
+    │── Infrastructure/
+    │   ├── Repositories/
+    │   ├── Services/
+    │   │   └── AuthService.cs
+    │   │
+    │   ├── DatabaseConfig.cs
+    │   ├── ServiceRegistration.cs
+    │   └── UserContext.cs
+    │
+    │── WebApi/
+    │   ├── Connected Services/
+    │   ├── Dependencies/
+    │   ├── Properties/
+    │   ├── Controllers/
+    │   ├── Extensions/
+    │   ├── Middlewares/
+    │   ├── appsettings.json
+    │   │    └── appsettings.Development.json
+    │   │
+    │   └── Program.cs
 
 ------------------------------------------------------------------------
 
