@@ -131,22 +131,22 @@ calling the API directly.
 
 ### Auth
 
-  Method   Endpoint               Description
-  -------- ---------------------- --------------------------------------
-  POST     `/api/auth/login`      Login & retrieve JWT (includes role)
-  POST     `/api/auth/register`   Register new Admin/Worker
+    Method   Endpoint               Description
+    -------- ---------------------- --------------------------------------
+    POST     `/api/auth/login`      Login & retrieve JWT (includes role)
+    POST     `/api/auth/register`   Register new Admin/Worker
 
 ### Schedules
 
-  Method   Endpoint                   Role
-  -------- -------------------------- --------
-  GET      `/api/schedules/jobs`            All User
-  GET      `/api/schedules/shift-types`     All User
-  GET      `/api/schedules/my-schedules`    Worker
-  GET      `/api/schedules/all`             Admin
-  POST     `/api/schedules/submit`          Worker
-  PUT     `/api/schedules/approve`          Admin
-  PUT     `/api/schedules/reject`           Admin
+    Method            Endpoint                  Role
+    -------- ------------------------------ ------------
+    GET      `/api/schedules/jobs`            All User
+    GET      `/api/schedules/shift-types`     All User
+    GET      `/api/schedules/my-schedules`    Worker
+    GET      `/api/schedules/all`             Admin
+    POST     `/api/schedules/submit`          Worker
+    PUT     `/api/schedules/approve`          Admin
+    PUT     `/api/schedules/reject`           Admin
 
 ------------------------------------------------------------------------
 
