@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{7E4EF22E-ECFA-43CC-B6CE-3D778FC5C681}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WorkSchedulerSystem.Database", "..\database\WorkSchedulerSystem.Database\WorkSchedulerSystem.Database.sqlproj", "{9C8FF357-A0A8-47FA-A758-F425EF975DCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{7E4EF22E-ECFA-43CC-B6CE-3D778FC5C681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E4EF22E-ECFA-43CC-B6CE-3D778FC5C681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E4EF22E-ECFA-43CC-B6CE-3D778FC5C681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C8FF357-A0A8-47FA-A758-F425EF975DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C8FF357-A0A8-47FA-A758-F425EF975DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C8FF357-A0A8-47FA-A758-F425EF975DCF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9C8FF357-A0A8-47FA-A758-F425EF975DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C8FF357-A0A8-47FA-A758-F425EF975DCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C8FF357-A0A8-47FA-A758-F425EF975DCF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

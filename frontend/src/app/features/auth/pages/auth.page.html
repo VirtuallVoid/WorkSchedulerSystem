@@ -45,6 +45,15 @@
             <input matInput type="password" formControlName="password">
           </mat-form-field>
 
+          <!--role field is for testing, i should delete this feature -->
+          <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="roleId">
+              <mat-option [value]="1">Admin</mat-option>
+              <mat-option [value]="2">Worker</mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <mat-form-field appearance="outline" *ngIf="registerForm.get('roleId')!.value !== 1">
             <mat-label>Job</mat-label>
             <mat-select formControlName="jobId">
@@ -52,15 +61,6 @@
               <mat-option *ngFor="let j of jobs" [value]="j.id">
                 {{ j.jobName }}
               </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <!--role field is for testing, i should delete this feature -->
-          <mat-form-field appearance="outline">
-            <mat-label>Role</mat-label>
-            <mat-select formControlName="roleId">
-              <mat-option [value]="1">Admin</mat-option>
-              <mat-option [value]="2">Worker</mat-option>
             </mat-select>
           </mat-form-field>
 
