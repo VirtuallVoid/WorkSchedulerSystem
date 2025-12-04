@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{7E4EF22E-ECFA-43CC-B6CE-3D778FC5C681}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WorkSchedulerSystem.Database", "..\database\WorkSchedulerSystem.Database\WorkSchedulerSystem.Database.sqlproj", "{9C8FF357-A0A8-47FA-A758-F425EF975DCF}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WorkScheduler.Database", "..\database\WorkSchedulerSystem.Database\WorkScheduler.Database.sqlproj", "{9C8FF357-A0A8-47FA-A758-F425EF975DCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
