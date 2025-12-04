@@ -9,6 +9,22 @@ both on API and frontend routing.
 
 ------------------------------------------------------------------------
 
+DATABASE FOLDER
+---------------
+
+The `database/` directory is a lightweight replica of the database used by the API.
+It contains the SQL artifacts required by the application:
+
+ - Table definitions
+ - Schemas
+ - Stored procedures
+
+This folder is intended for demonstration and development purposes only.
+It allows reviewers to understand the database structure without requiring access 
+to an external SQL server or production environment.
+
+------------------------------------------------------------------------
+
 # Backend (ASP.NET Core 8) --- API Service
 
 A clean backend demonstrating real-world architecture patterns used in
